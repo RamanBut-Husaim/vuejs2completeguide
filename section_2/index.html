@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="description" content="Webpage description goes here" />
+  <meta charset="utf-8">
+  <title>Change_me</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="">
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    {{ sayWicked() }}
+  </div>
+</body>
+
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      title: "Something Wicked"
+    },
+    methods: {
+      sayWicked: function () {
+        return this.title + ' And Awesome';
+      }
+    }
+  });
+</script>
+
+</html>
