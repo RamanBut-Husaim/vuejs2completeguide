@@ -12,7 +12,7 @@
 
 <body>
   <div id="app">
-    {{ sayWicked() }}
+    {{ sayWicked() }} - <a v-bind:href="link">Google</a>
   </div>
 </body>
 
@@ -20,7 +20,8 @@
   new Vue({
     el: "#app",
     data: {
-      title: "Something Wicked"
+      title: "Something Wicked",
+      link: "https://google.ru"
     },
     methods: {
       sayWicked: function () {
