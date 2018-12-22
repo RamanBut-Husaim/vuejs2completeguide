@@ -16,15 +16,15 @@
       <hr />
       <p v-html="finishedLink"></p>
       <hr />
-      <button v-on:click="counter++">Increase</button>
-      <button v-on:click="counter--">Decrease</button>
+      <button @click="counter++">Increase</button>
+      <button @click="counter--">Decrease</button>
       <p>Counter: {{ counter }}</p>
       <p>Results: {{ result() }} | {{ output }}</p>
-      <p v-on:mousemove="updateCoordinates">
+      <p @mousemove="updateCoordinates">
         Coordinates: {{ coordinates.x }} / {{ coordinates.y }} -
-        <span v-on:mousemove.stop="">DEAD SPOT</span>
+        <span @mousemove.stop="">DEAD SPOT</span>
       </p>
-      <input type="text" v-on:keyup.enter="alertMe" />
+      <input type="text" @keyup.enter="alertMe" />
       <hr />
       <input type="text" v-model="name" />
       <p>{{ name }}</p>
