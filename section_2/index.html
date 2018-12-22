@@ -1,37 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta name="description" content="Webpage description goes here" />
-    <meta charset="utf-8" />
-    <title>Change_me</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="author" content="" />
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  </head>
 
-  <body>
-    <div id="app">
-      <h1 v-once>{{ title }}</h1>
-      <p>{{ sayWicked() }} - <a v-bind:href="link">Google</a></p>
-      <hr />
-      <p v-html="finishedLink"></p>
-    </div>
-  </body>
+<head>
+  <meta name="description" content="Webpage description goes here" />
+  <meta charset="utf-8" />
+  <title>Change_me</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="author" content="" />
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
 
-  <script>
-    new Vue({
-      el: '#app',
-      data: {
-        title: 'Something Wicked',
-        link: 'https://google.ru',
-        finishedLink: '<a href="https://google.ru">Something Awesome</a>',
+<body>
+  <div id="app">
+    <h1 v-once>{{ title }}</h1>
+    <p>{{ sayWicked() }} - <a v-bind:href="link">Google</a></p>
+    <hr />
+    <p v-html="finishedLink"></p>
+    <hr />
+    <button v-on:click="increase($event, 2)">Clicker</button>
+    <p>{{ counter }}</p>
+    <p v-on:mousemove="updateCoordinates">Coordinates: {{ coordinates.x }} / {{ coordinates.y }}</p>
+  </div>
+</body>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      title: 'Something Wicked',
+      link: 'https://google.ru',
+      finishedLink: '<a href="https://google.ru">Something Awesome</a>',
+      counter: 0,
+      coordinates: {
+        x: 0,
+        y: 0
+      }
+    },
+    methods: {
+      sayWicked: function () {
+        this.title = 'something good';
+        return this.title + ' And Awesome';
       },
-      methods: {
-        sayWicked: function() {
-          this.title = 'something good';
-          return this.title + ' And Awesome';
-        },
+      increase: function (event, step) {
+        this.counter += step;
       },
-    });
-  </script>
+      updateCoordinates: function (event) {
+        this.coordinates.x = event.clientX;
+        this.coordinates.y = event.clientY;
+      }
+    },
+  });
+</script>
+
 </html>
