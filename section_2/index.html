@@ -1,67 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta name="description" content="Webpage description goes here" />
+    <meta charset="utf-8" />
+    <title>Section 2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
 
-<head>
-  <meta name="description" content="Webpage description goes here" />
-  <meta charset="utf-8" />
-  <title>Section 2</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="author" content="" />
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-</head>
+  <body>
+    <div id="app">
+      <h1 v-once>{{ title }}</h1>
+      <p>{{ sayWicked() }} - <a v-bind:href="link">Google</a></p>
+      <hr />
+      <p v-html="finishedLink"></p>
+      <hr />
+      <button v-on:click="counter++">Increase</button>
+      <button v-on:click="counter--">Decrease</button>
+      <p>Counter: {{ counter }}</p>
+      <p>Results: {{ result() }} | {{ output }}</p>
+      <p v-on:mousemove="updateCoordinates">
+        Coordinates: {{ coordinates.x }} / {{ coordinates.y }} -
+        <span v-on:mousemove.stop="">DEAD SPOT</span>
+      </p>
+      <input type="text" v-on:keyup.enter="alertMe" />
+      <hr />
+      <input type="text" v-model="name" />
+      <p>{{ name }}</p>
+    </div>
+  </body>
 
-<body>
-  <div id="app">
-    <h1 v-once>{{ title }}</h1>
-    <p>{{ sayWicked() }} - <a v-bind:href="link">Google</a></p>
-    <hr />
-    <p v-html="finishedLink"></p>
-    <hr />
-    <button v-on:click="increase($event, 2)">Clicker</button>
-    <button v-on:click="counter++">Clicker 2</button>
-    <p>{{ counter }}</p>
-    <p v-on:mousemove="updateCoordinates">
-      Coordinates: {{ coordinates.x }} / {{ coordinates.y }}
-      - <span v-on:mousemove.stop="">DEAD SPOT</span>
-    </p>
-    <input type="text" v-on:keyup.enter="alertMe" />
-    <hr />
-    <input type="text" v-model="name" />
-    <p>{{ name }}</p>
-  </div>
-</body>
-
-<script>
-  new Vue({
-    el: '#app',
-    data: {
-      title: 'Something Wicked',
-      link: 'https://google.ru',
-      finishedLink: '<a href="https://google.ru">Something Awesome</a>',
-      counter: 0,
-      coordinates: {
-        x: 0,
-        y: 0
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        title: 'Something Wicked',
+        link: 'https://google.ru',
+        finishedLink: '<a href="https://google.ru">Something Awesome</a>',
+        counter: 0,
+        coordinates: {
+          x: 0,
+          y: 0,
+        },
+        name: 'Something',
       },
-      name: "Something"
-    },
-    methods: {
-      sayWicked: function () {
-        this.title = 'something good';
-        return this.title + ' And Awesome';
+      computed: {
+        output: function() {
+          return this.counter > 5 ? 'Greater 5' : 'Smaller 5';
+        },
       },
-      increase: function (event, step) {
-        this.counter += step;
+      methods: {
+        sayWicked: function() {
+          this.title = 'something good';
+          return this.title + ' And Awesome';
+        },
+        result: function() {
+          return this.counter > 5 ? 'Greater 5' : 'Smaller 5';
+        },
+        updateCoordinates: function(event) {
+          this.coordinates.x = event.clientX;
+          this.coordinates.y = event.clientY;
+        },
+        alertMe: function() {
+          alert('Alert!');
+        },
       },
-      updateCoordinates: function (event) {
-        this.coordinates.x = event.clientX;
-        this.coordinates.y = event.clientY;
-      },
-      alertMe: function () {
-        alert('Alert!');
-      }
-    },
-  });
-</script>
-
+    });
+  </script>
 </html>
