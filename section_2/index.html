@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta name="description" content="Webpage description goes here" />
+    <meta charset="utf-8" />
+    <title>Change_me</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
 
-<head>
-  <meta name="description" content="Webpage description goes here" />
-  <meta charset="utf-8">
-  <title>Change_me</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="author" content="">
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-</head>
+  <body>
+    <div id="app">
+      <h1 v-once>{{ title }}</h1>
+      <p>{{ sayWicked() }} - <a v-bind:href="link">Google</a></p>
+      <hr />
+      <p v-html="finishedLink"></p>
+    </div>
+  </body>
 
-<body>
-  <div id="app">
-    <h1 v-once>{{ title }}</h1>
-    <p>{{ sayWicked() }} - <a v-bind:href="link">Google</a></p>
-  </div>
-</body>
-
-<script>
-  new Vue({
-    el: "#app",
-    data: {
-      title: "Something Wicked",
-      link: "https://google.ru"
-    },
-    methods: {
-      sayWicked: function () {
-        this.title = "something good"
-        return this.title + ' And Awesome';
-      }
-    }
-  });
-</script>
-
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        title: 'Something Wicked',
+        link: 'https://google.ru',
+        finishedLink: '<a href="https://google.ru">Something Awesome</a>',
+      },
+      methods: {
+        sayWicked: function() {
+          this.title = 'something good';
+          return this.title + ' And Awesome';
+        },
+      },
+    });
+  </script>
 </html>
