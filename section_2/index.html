@@ -19,7 +19,10 @@
     <hr />
     <button v-on:click="increase($event, 2)">Clicker</button>
     <p>{{ counter }}</p>
-    <p v-on:mousemove="updateCoordinates">Coordinates: {{ coordinates.x }} / {{ coordinates.y }}</p>
+    <p v-on:mousemove="updateCoordinates">
+      Coordinates: {{ coordinates.x }} / {{ coordinates.y }}
+      - <span v-on:mousemove.stop="">DEAD SPOT</span>
+    </p>
   </div>
 </body>
 
